@@ -7,7 +7,6 @@ from math import sin, cos, radians
 
 from numpy import array, full, inf, sign
 from numpy.linalg import norm
-import nlopt
 
 from OCP.gp import gp_Vec2d
 
@@ -344,6 +343,7 @@ class SketchConstraintSolver(object):
         return f, grad, lb, ub
 
     def solve(self) -> Tuple[Sequence[Sequence[float]], Dict[str, Any]]:
+        import nlopt
 
         x0 = array(list(chain.from_iterable(self.entities))).ravel()
         f, grad, lb, ub = self._cost(x0)
