@@ -1,0 +1,38 @@
+name: Create Release from Wheel
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for the release'
+        required: true
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: build-wheel.yml
+          name: cadquery-wheel
+          path: wheels
+
+      - name: List wheels
+        run: |
+          mkdir dist
+          mv wheels/**/*.whl dist
+          rm -rf wheels
+          ls dist
+
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/*.whl"
+          tag: ${{ github.event.inputs.tag_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
