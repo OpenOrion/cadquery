@@ -19,11 +19,11 @@ jobs:
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: build-wheel.yml
+          workflow: build-wheel.yaml
           name: cadquery-wheel
           path: wheels
 
-      - name: Debug: List all files
+      - name: List all files
         run: |
           echo "Listing all files in the workspace:"
           find . -type f -print
