@@ -16,15 +16,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install build dependencies
+      - name: Remove all files except cadquery directory
         run: |
-          python -m pip install --upgrade pip
-          pip install setuptools wheel
+          find . -maxdepth 1 ! -name 'cadquery' ! -name '.' -exec rm -rf {} +
 
       - name: Create setup.py
         run: |
@@ -48,16 +42,19 @@ jobs:
         run: |
           echo "include cadquery/*" > MANIFEST.in
 
-      - name: Replace repo with cadquery folder
+      - name: Verify directory contents
         run: |
-          mkdir temp
-          mv cadquery temp/
-          ls temp  # Verify that the directory was moved
-          rm -rf *
-          mv temp/cadquery .
-          mv ../setup.py .
-          mv ../MANIFEST.in .
-          ls  # Verify the current directory contents
+          ls -la
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel
 
       - name: Build wheel
         run: |
@@ -101,4 +98,5 @@ jobs:
           asset_path: ./dist/cadquery-1.0.0-py3-none-any.whl
           asset_name: cadquery-1.0.0-py3-none-any.whl
           asset_content_type: application/zip
+
 
