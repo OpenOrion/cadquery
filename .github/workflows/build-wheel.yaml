@@ -52,10 +52,12 @@ jobs:
         run: |
           mkdir temp
           mv cadquery temp/
+          ls temp  # Verify that the directory was moved
           rm -rf *
           mv temp/cadquery .
           mv ../setup.py .
           mv ../MANIFEST.in .
+          ls  # Verify the current directory contents
 
       - name: Build wheel
         run: |
