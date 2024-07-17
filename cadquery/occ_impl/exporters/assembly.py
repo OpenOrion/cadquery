@@ -7,9 +7,6 @@ from itertools import chain
 from typing import Optional
 from typing_extensions import Literal
 
-from vtkmodules.vtkIOExport import vtkJSONSceneExporter, vtkVRMLExporter
-from vtkmodules.vtkRenderingCore import vtkRenderer, vtkRenderWindow
-
 from OCP.XSControl import XSControl_WorkSession
 from OCP.STEPCAFControl import STEPCAFControl_Writer
 from OCP.STEPControl import STEPControl_StepModelType
@@ -136,10 +133,13 @@ def exportCAF(assy: AssemblyProtocol, path: str) -> bool:
 
 def _vtkRenderWindow(
     assy: AssemblyProtocol, tolerance: float = 1e-3, angularTolerance: float = 0.1
-) -> vtkRenderWindow:
+):
     """
     Convert an assembly to a vtkRenderWindow. Used by vtk based exporters.
     """
+    from vtkmodules.vtkIOExport import vtkJSONSceneExporter, vtkVRMLExporter
+    from vtkmodules.vtkRenderingCore import vtkRenderer, vtkRenderWindow
+
 
     renderer = toVTK(assy, tolerance=tolerance, angularTolerance=angularTolerance)
     renderWindow = vtkRenderWindow()

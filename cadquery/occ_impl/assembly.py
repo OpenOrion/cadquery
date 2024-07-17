@@ -27,15 +27,6 @@ from OCP.BOPAlgo import BOPAlgo_GlueEnum, BOPAlgo_MakeConnected
 from OCP.TopoDS import TopoDS_Shape
 from OCP.gp import gp_EulerSequence
 
-from vtkmodules.vtkRenderingCore import (
-    vtkActor,
-    vtkPolyDataMapper as vtkMapper,
-    vtkRenderer,
-)
-
-from vtkmodules.vtkFiltersExtraction import vtkExtractCellsByType
-from vtkmodules.vtkCommonDataModel import VTK_TRIANGLE, VTK_LINE, VTK_VERTEX
-
 from .geom import Location
 from .shapes import Shape, Solid, Compound
 from .exporters.vtk import toString
@@ -258,7 +249,17 @@ def toVTK(
     color: Tuple[float, float, float, float] = (1.0, 1.0, 1.0, 1.0),
     tolerance: float = 1e-3,
     angularTolerance: float = 0.1,
-) -> vtkRenderer:
+):
+
+    from vtkmodules.vtkRenderingCore import (
+        vtkActor,
+        vtkPolyDataMapper as vtkMapper,
+        vtkRenderer,
+    )
+
+    from vtkmodules.vtkFiltersExtraction import vtkExtractCellsByType
+    from vtkmodules.vtkCommonDataModel import VTK_TRIANGLE, VTK_LINE, VTK_VERTEX
+
 
     renderer = vtkRenderer()
 

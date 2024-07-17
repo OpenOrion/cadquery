@@ -17,9 +17,6 @@ from typing import (
 
 from io import BytesIO
 
-from vtkmodules.vtkCommonDataModel import vtkPolyData
-from vtkmodules.vtkFiltersCore import vtkTriangleFilter, vtkPolyDataNormals
-
 from .geom import Vector, VectorLike, BoundBox, Plane, Location, Matrix
 from .shape_protocols import geom_LUT_FACE, geom_LUT_EDGE, Shapes, Geoms
 
@@ -1436,10 +1433,14 @@ class Shape(object):
         tolerance: Optional[float] = None,
         angularTolerance: Optional[float] = None,
         normals: bool = False,
-    ) -> vtkPolyData:
+    ):
         """
         Convert shape to vtkPolyData
         """
+
+        from vtkmodules.vtkCommonDataModel import vtkPolyData
+        from vtkmodules.vtkFiltersCore import vtkTriangleFilter, vtkPolyDataNormals
+
 
         vtk_shape = IVtkOCC_Shape(self.wrapped)
         shape_data = IVtkVTK_ShapeData()

@@ -5,11 +5,6 @@ from typing import Union
 
 from OCP.TopoDS import TopoDS_Shape
 
-from vtkmodules.vtkInteractionWidgets import vtkOrientationMarkerWidget
-from vtkmodules.vtkRenderingAnnotation import vtkAxesActor
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
-from vtkmodules.vtkRenderingCore import vtkMapper, vtkRenderWindowInteractor
-
 DEFAULT_COLOR = [1, 0.8, 0, 1]
 
 
@@ -36,6 +31,11 @@ def show(*objs: Union[Shape, Workplane, Assembly, Sketch]):
     """
     Show CQ objects using VTK
     """
+    from vtkmodules.vtkInteractionWidgets import vtkOrientationMarkerWidget
+    from vtkmodules.vtkRenderingAnnotation import vtkAxesActor
+    from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
+    from vtkmodules.vtkRenderingCore import vtkMapper, vtkRenderWindowInteractor
+
 
     # construct the assy
     assy = _to_assy(*objs)
