@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   release:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Download artifact
