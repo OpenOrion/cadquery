@@ -26,7 +26,7 @@ is_conda = "CONDA_PREFIX_1" in os.environ
 # Only include the installation dependencies if we are not running on RTD or AppVeyor or in a conda env
 if not is_rtd and not is_appveyor and not is_azure and not is_conda:
     reqs = [
-        "cadquery-ocp>=7.7.0a0,<7.8",
+        "cadquery-ocp-arm-test",
         "ezdxf",
         "multimethod>=1.11,<2.0",
         # "nlopt",
@@ -37,8 +37,8 @@ if not is_rtd and not is_appveyor and not is_azure and not is_conda:
 
 
 setup(
-    name="cadquery",
-    version="2.5.0dev",  # Update this for the next release
+    name="cadquery-arm-test",
+    version="0.0.1",  # Update this for the next release
     url="https://github.com/CadQuery/cadquery",
     license="Apache Public License 2.0",
     author="David Cowden",
