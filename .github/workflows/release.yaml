@@ -25,8 +25,9 @@ jobs:
 
       - name: List wheels
         run: |
+          ls
           mkdir dist
-          mv wheels/cadquery-1.0.0-py3-none-any.whl dist/
+          mv wheels/**/*.whl dist
           rm -rf wheels
           ls dist
 
