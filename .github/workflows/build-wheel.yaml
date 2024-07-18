@@ -22,6 +22,9 @@ jobs:
         run: |
           echo "from setuptools import setup, find_packages" > setup.py
           echo "" >> setup.py
+          echo "with open('README.rst', 'r', encoding='utf-8') as fh:" >> setup.py
+          echo "    long_description = fh.read()" >> setup.py
+          echo "" >> setup.py
           echo "setup(" >> setup.py
           echo "    name='cadquery-arm-test'," >> setup.py
           echo "    version='0.0.1'," >> setup.py
@@ -33,9 +36,12 @@ jobs:
           echo "        'multimethod'," >> setup.py
           echo "        'typish'," >> setup.py
           echo "        'casadi'," >> setup.py
-          echo "        'path'" >> setup.py
-          echo "    ]" >> setup.py
+          echo "        'path'," >> setup.py
+          echo "    ]," >> setup.py
+          echo "    long_description=long_description," >> setup.py
+          echo "    long_description_content_type='text/x-rst'," >> setup.py
           echo ")" >> setup.py
+
 
       - name: Create MANIFEST.in
         run: |
