@@ -18,6 +18,13 @@ jobs:
         run: |
           find . -maxdepth 1 ! -name 'cadquery' ! -name '.' -exec rm -rf {} +
 
+      - name: Create README.rst
+        run: |
+          echo "cadquery-arm-test" > README.rst
+          echo "=================" >> README.rst
+          echo "" >> README.rst
+          echo "A description of the cadquery-arm-test package." >> README.rst
+
       - name: Create setup.py
         run: |
           echo "from setuptools import setup, find_packages" > setup.py
