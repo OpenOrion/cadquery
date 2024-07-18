@@ -25,6 +25,7 @@ jobs:
 
       - name: List wheels
         run: |
+          cd wheels
           ls
           mkdir dist
           mv wheels/**/*.whl dist
