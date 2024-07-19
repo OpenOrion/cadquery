@@ -20,10 +20,10 @@ jobs:
 
       - name: Create README.rst
         run: |
-          echo "cadquery-arm-test" > README.rst
+          echo "cadquery-arm" > README.rst
           echo "=================" >> README.rst
           echo "" >> README.rst
-          echo "A description of the cadquery-arm-test package." >> README.rst
+          echo "A cadquery fork for arm" >> README.rst
 
       - name: Create setup.py
         run: |
@@ -33,12 +33,12 @@ jobs:
           echo "    long_description = fh.read()" >> setup.py
           echo "" >> setup.py
           echo "setup(" >> setup.py
-          echo "    name='cadquery-arm-test'," >> setup.py
+          echo "    name='cadquery-arm'," >> setup.py
           echo "    version='0.0.1'," >> setup.py
           echo "    packages=find_packages()," >> setup.py
           echo "    include_package_data=True," >> setup.py
           echo "    install_requires=[" >> setup.py
-          echo "        'cadquery-ocp-arm-test'," >> setup.py
+          echo "        'cadquery-ocp-arm'," >> setup.py
           echo "        'ezdxf'," >> setup.py
           echo "        'multimethod'," >> setup.py
           echo "        'typish'," >> setup.py
