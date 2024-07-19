@@ -37,7 +37,7 @@ if not is_rtd and not is_appveyor and not is_azure and not is_conda:
 
 
 setup(
-    name="cadquery-arm-test",
+    name="cadquery-arm",
     version="0.0.1",  # Update this for the next release
     url="https://github.com/CadQuery/cadquery",
     license="Apache Public License 2.0",
